@@ -33,7 +33,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView_cats)
+        // Вот тут ставим GridLayoutManager как layoutManager
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+
         recyclerView.adapter = CatAdapter(viewModel.getMockData())
     }
 

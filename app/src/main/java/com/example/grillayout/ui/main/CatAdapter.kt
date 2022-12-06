@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.grillayout.R
 
@@ -12,6 +13,7 @@ class CatAdapter(private val catList: List<Cat>): RecyclerView.Adapter<CatAdapte
     class CatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameView = itemView.findViewById<TextView>(R.id.textView_name)
         val ageView = itemView.findViewById<TextView>(R.id.textView_age)
+        val rootContainer = itemView.findViewById<ConstraintLayout>(R.id.root_container)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatHolder {
@@ -23,6 +25,7 @@ class CatAdapter(private val catList: List<Cat>): RecyclerView.Adapter<CatAdapte
     override fun onBindViewHolder(holder: CatHolder, position: Int) {
         holder.nameView.text = "меня зовут ${catList[position].name}"
         holder.ageView.text = "мне ${catList[position].age} лет"
+        holder.rootContainer.setOnClickListener { catList[position].onClick() }
     }
 
     override fun getItemCount() = catList.size
